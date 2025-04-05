@@ -41,7 +41,6 @@ export const FindMovie: React.FC<Props> = ({ setMovies }) => {
       .then(res => {
         if (isResponseError(res)) {
           setIsError(true);
-          setBtnIsLoading(false);
 
           return;
         }
@@ -58,12 +57,13 @@ export const FindMovie: React.FC<Props> = ({ setMovies }) => {
         };
 
         setMovie(mappedMovie);
-        setBtnIsLoading(false);
         setBtnTitle('Search again');
         setAddBtnIsActive(true);
       })
       .catch(() => {
         setIsError(true);
+      })
+      .finally(() => {
         setBtnIsLoading(false);
       });
   };
